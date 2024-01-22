@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Message{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <h1>Create Message</h1>
+    <form action="{% url 'test_app:message_create' %}" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="id_receiver">Receiver:</label>
+        <select class="form-control" id="id_receiver" name="receiver" required aria-required="true">
+          {% for user in users %}
+            <option value="{{ user.id }}">{{ user.username }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="id_content">Content:</label>
+        <textarea class="form-control" id="id_content" name="content" rows="3" required aria-required="true"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </div>
+{% endblock %}

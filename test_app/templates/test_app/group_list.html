@@ -1,0 +1,35 @@
+Sure! Here's an example of a responsive and accessible HTML markup for the group_list.html template using Bootstrap:
+
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Group List</h1>
+  
+  <div class="row">
+    {% for group in groups %}
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">{{ group.name }}</h5>
+          <p class="card-text">{{ group.description }}</p>
+        </div>
+        <div class="card-footer">
+          <a href="{% url 'test_app:group_detail' group.pk %}" class="btn btn-primary">View Group</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+```
+
+In this example, we use Bootstrap's grid system to divide the groups into columns with `col-md-4` class, which means each group will take up 4 columns on medium-sized screens and above.
+
+The group information is displayed in a `card` component, with the group name displayed as the card's title (`card-title`) and the group description displayed as the card's text (`card-text`). The `card-body` class is used to contain the card's content, and the `card-footer` class is used for the card's footer.
+
+We also include a link to the group detail page using the `{% url %}` template tag, which dynamically generates the URL based on the group's primary key (`group.pk`). The link is styled as a primary button using the `btn btn-primary` classes.
+
+This HTML markup is designed to be responsive, thanks to Bootstrap's grid system, and accessible, as it uses semantic HTML tags (`h1`, `div`) and ARIA-friendly classes (`card`, `card-body`, `card-title`, `card-text`, `btn`).

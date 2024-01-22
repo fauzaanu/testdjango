@@ -1,0 +1,23 @@
+{% extends 'test_app/base.html' %}
+
+{% block title %}Post Detail{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <article class="card">
+                <div class="card-header">
+                    <h2 class="card-title">{{ post.content }}</h2>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ post.timestamp }}</p>
+                </div>
+            </article>
+            <div class="mt-3">
+                <a href="{% url 'test_app:post_list' %}" class="btn btn-secondary">Back to Posts</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

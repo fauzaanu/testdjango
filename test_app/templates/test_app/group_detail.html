@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Group Detail{% endblock %}
+
+{% block content %}
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-lg-8">
+        <h2>{{ group.name }}</h2>
+        <p>{{ group.description }}</p>
+        <p>Created by: {{ group.creator.username }}</p>
+        <p>Created at: {{ group.timestamp }}</p>
+      </div>
+      <div class="col-lg-4">
+        <h3>Group Members</h3>
+        <ul class="list-group">
+            {% for membership in group.groupmembership_set.all %}
+              <li class="list-group-item">{{ membership.user.username }}</li>
+            {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+Sure! Here's an example of a responsive and accessible HTML markup for the message_list.html template using Bootstrap:
+
+```html
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1 class="mt-4">Message List</h1>
+  <hr>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Messages</h5>
+          <ul class="list-group">
+            {% for message in messages %}
+            <li class="list-group-item">
+              <h6>{{ message.sender }}</h6>
+              <p>{{ message.content }}</p>
+              <small class="text-muted">{{ message.timestamp }}</small>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No messages found.</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body">
+          <h5 class="card-title">Send Message</h5>
+          <form action="{% url 'test_app:message_create' %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="id_receiver">Receiver:</label>
+              <select class="form-control" id="id_receiver" name="receiver">
+                <option value="">-- Select Receiver --</option>
+                <!-- Render options for receivers -->
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="id_content">Content:</label>
+              <textarea class="form-control" id="id_content" name="content" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+```
+
+In this example, Bootstrap's grid system has been used to create a responsive layout with two columns: one for displaying the messages and one for the message creation form.
+
+The messages are displayed in a card component with a title and a list group. Each message is represented as a list group item with the sender's name, message content, and timestamp.
+
+The message creation form is also placed in a separate card component. It includes form fields for selecting the receiver and entering the message content.
+
+Remember to replace the comment `<!-- Render options for receivers -->` with the appropriate code to render the options for selecting the receivers dynamically.
+
+This HTML markup incorporates Bootstrap's CSS classes for styling and responsiveness, providing a visually appealing and functional message list template.
